@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import PublicLayout from '~/layouts/public.vue'
+
 defineProps<{ error: any }>()
 </script>
 
 <template>
-  <div class="container">
+  <PublicLayout>
     <div class="title">Server Error</div>
 
     <span>{{ error.message }}</span>
-  </div>
+  </PublicLayout>
 </template>

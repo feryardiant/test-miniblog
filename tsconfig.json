@@ -1,0 +1,9 @@
+{
+  "extends": "@adonisjs/tsconfig/tsconfig.app.json",
+  "compilerOptions": {
+    "rootDir": "./",
+    "outDir": "./build",
+    "types": ["vite/client"]
+  },
+  "exclude": ["resources/inertia/**/*", "node_modules", "build"]
+}

@@ -1,12 +1,14 @@
 <script setup lang="ts">
+import HomeController from '#controllers/home_controller'
+import { InferPageProps } from '@adonisjs/inertia/types'
 import { Head, Link } from '@inertiajs/vue3'
 import PostMeta from '~/components/post-meta.vue'
 import PublicLayout from '~/layouts/public.vue'
-import { User, PostCollection } from '~/types'
+import { User } from '~/types'
 
 defineProps<{
   auth?: User
-  posts: PostCollection
+  posts: InferPageProps<HomeController, 'index'>['posts']
 }>()
 </script>
 
@@ -39,7 +41,7 @@ defineProps<{
 
       <div class="grid grid-cols-3 gap-6">
         <div v-for="post of posts.data" :key="post.id">
-          <h3 class="text-3xl font-semibold leading-10">
+          <h3 class="text-gray-800 hover:text-gray-700 text-3xl font-semibold leading-10">
             <Link :href="`/posts/${post.slug}`">{{ post.title }}</Link>
           </h3>
 

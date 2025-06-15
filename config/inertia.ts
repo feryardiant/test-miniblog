@@ -1,3 +1,4 @@
+import User from '#models/user'
 import { defineConfig } from '@adonisjs/inertia'
 import type { InferSharedProps } from '@adonisjs/inertia/types'
 
@@ -11,7 +12,16 @@ const inertiaConfig = defineConfig({
    * Data that should be shared with all rendered pages
    */
   sharedData: {
-    // user: (ctx) => ctx.inertia.always(() => ctx.auth.user),
+    auth: async ({ auth, inertia, session }) => {
+      const authWeb: number | undefined = session.get('auth_web')
+      let currentUser: User | null = null
+
+      if (authWeb) {
+        currentUser = await User.find(authWeb)
+      }
+
+      return inertia.always(() => auth.user || currentUser)
+    },
   },
 
   /**

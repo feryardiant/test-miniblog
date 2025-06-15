@@ -1,14 +1,16 @@
 <script setup lang="ts">
+import UsersController from '#controllers/users_controller'
+import { InferPageProps } from '@adonisjs/inertia/types'
 import { Head } from '@inertiajs/vue3'
 import NotFound from '~/components/not-found.vue'
 import PostHeader from '~/components/post-header.vue'
 import PublicLayout from '~/layouts/public.vue'
-import { Post, User } from '~/types'
+import { User } from '~/types'
 
 defineProps<{
   auth?: User
   author: User
-  posts: Post[]
+  posts: InferPageProps<UsersController, 'show'>['posts']
 }>()
 </script>
 

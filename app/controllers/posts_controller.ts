@@ -6,12 +6,11 @@ export default class PostsController {
   /**
    * Show list of posts
    */
-  async index({ inertia, auth }: HttpContext) {
+  async index({ inertia }: HttpContext) {
     const posts = await Post.query().preload('author').orderBy('created_at', 'desc').paginate(1, 10)
 
     return inertia.render('posts/index', {
       posts: posts.serialize(),
-      auth: auth.user,
     })
   }
 
@@ -40,10 +39,10 @@ export default class PostsController {
   /**
    * Show a single post
    */
-  async show({ auth, params, inertia }: HttpContext) {
+  async show({ params, inertia }: HttpContext) {
     const post = await Post.query().where('slug', params.slug).preload('author').firstOrFail()
 
-    return inertia.render('posts/show', { post, auth: auth.user })
+    return inertia.render('posts/show', { post })
   }
 
   /**
@@ -57,7 +56,7 @@ export default class PostsController {
       return response.abort('You can only edit your own posts', 403)
     }
 
-    return inertia.render('posts/edit', { post, auth: auth.user })
+    return inertia.render('posts/edit', { post })
   }
 
   /**

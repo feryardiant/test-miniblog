@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import UsersController from '#controllers/users_controller'
+import { InferPageProps } from '@adonisjs/inertia/types'
 import { Head, Link } from '@inertiajs/vue3'
 import NotFound from '~/components/not-found.vue'
 import PublicLayout from '~/layouts/public.vue'
@@ -6,7 +8,7 @@ import { User } from '~/types'
 
 defineProps<{
   auth: User
-  users: User[]
+  users: InferPageProps<UsersController, 'index'>['users']
 }>()
 </script>
 

@@ -5,22 +5,23 @@ export default class UsersController {
   /**
    * Show list of posts
    */
-  async index({ inertia, auth }: HttpContext) {
+  async index({ inertia }: HttpContext) {
     const users = await User.query().withCount('posts').orderBy('created_at', 'desc')
 
     return inertia.render('users/index', {
-      auth: auth.user,
-      users: users.map((user) => ({
-        ...user.serialize(),
-        postsCount: user.$extras.posts_count,
-      })),
+      users: users.map((user) => {
+        return {
+          ...user.serialize(),
+          postsCount: user.$extras.posts_count,
+        } as User & { postsCount: number }
+      }),
     })
   }
 
   /**
    * Show user profile with their posts
    */
-  async show({ auth, params, inertia }: HttpContext) {
+  async show({ params, inertia }: HttpContext) {
     const user = await User.query()
       .where('handle', params.handle)
       .preload('posts', (query) => {
@@ -29,7 +30,6 @@ export default class UsersController {
       .firstOrFail()
 
     return inertia.render('users/show', {
-      auth: auth.user,
       author: user,
       posts: user.posts,
     })
@@ -47,7 +47,6 @@ export default class UsersController {
       .firstOrFail()
 
     return inertia.render('users/show', {
-      auth: auth.user,
       author: user,
       posts: user.posts,
     })

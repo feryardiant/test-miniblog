@@ -1,12 +1,14 @@
 <script setup lang="ts">
+import PostsController from '#controllers/posts_controller'
+import { InferPageProps } from '@adonisjs/inertia/types'
 import { Head } from '@inertiajs/vue3'
 import PostHeader from '~/components/post-header.vue'
 import PublicLayout from '~/layouts/public.vue'
-import { Post, User } from '~/types'
+import { User } from '~/types'
 
 defineProps<{
   auth?: User
-  post: Post
+  post: InferPageProps<PostsController, 'show'>['post']
 }>()
 
 function render(content: string): string {
@@ -21,7 +23,11 @@ function render(content: string): string {
 
   <PublicLayout :auth="auth">
     <div class="flex flex-col gap-6 w-3xl mx-auto">
-      <PostHeader :title="post.title" :author="post.author as User" :date="String(post.publishedAt)" />
+      <PostHeader
+        :title="post.title"
+        :author="post.author as User"
+        :date="String(post.publishedAt)"
+      />
 
       <main v-html="render(post.content)" />
     </div>

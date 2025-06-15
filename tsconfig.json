@@ -1,6 +1,7 @@
 {
   "extends": "@adonisjs/tsconfig/tsconfig.app.json",
   "compilerOptions": {
+    "allowJs": true,
     "rootDir": "./",
     "outDir": "./build",
     "types": ["vite/client"]

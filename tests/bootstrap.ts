@@ -6,6 +6,8 @@ import testUtils from '@adonisjs/core/services/test_utils'
 import { browserClient } from '@japa/browser-client'
 import { apiClient } from '@japa/api-client'
 import { inertiaApiClient } from '@adonisjs/inertia/plugins/api_client'
+import { authBrowserClient } from '@adonisjs/auth/plugins/browser_client'
+import { sessionBrowserClient } from '@adonisjs/session/plugins/browser_client'
 
 /**
  * This file is imported by the "bin/test.ts" entrypoint file
@@ -20,8 +22,10 @@ export const plugins: Config['plugins'] = [
   pluginAdonisJS(app),
   apiClient(),
   inertiaApiClient(app),
+  authBrowserClient(app),
+  sessionBrowserClient(app),
   browserClient({
-    runInSuites: ['browser'],
+    runInSuites: ['browser', 'functional'],
     contextOptions: {
       baseURL: 'http://localhost:3333',
       colorScheme: 'dark',

@@ -14,6 +14,8 @@ defineProps<{
   <Head title="Mini Blog - All Users" />
 
   <PublicLayout :auth="auth">
+    <h3 class="text-4xl leading-10">All Users</h3>
+
     <div v-if="users.length > 0" class="grid grid-cols-3 gap-6 w-4xl mx-auto">
       <div v-for="user of users" :key="user.id" class="flex gap-3 items-center">
         <div class="size-16 bg-gray-400 border-2 border-gray-500 rounded-full"></div>

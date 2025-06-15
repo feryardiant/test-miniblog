@@ -12,9 +12,11 @@ defineProps<{
 </script>
 
 <template>
-  <Head title="Mini Blog - All Users" />
+  <Head title="Mini Blog - All Posts" />
 
   <PublicLayout :auth="auth">
+    <h3 class="text-4xl leading-10">Recent Posts</h3>
+
     <div class="flex flex-col gap-10 w-3xl mx-auto">
       <template v-if="posts.length > 0">
         <div v-for="post of posts" :key="post.id">

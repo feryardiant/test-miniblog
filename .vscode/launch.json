@@ -18,7 +18,24 @@
       "program": "ace.js",
       "args": ["serve", "--hmr"],
       "skipFiles": ["<node_internals>/**"],
+      "cwd": "${workspaceFolder}",
+    },
+    {
+      "name": "Test and Debug",
+      "type": "node",
+      "request": "launch",
+      "program": "ace.js",
+      "args": ["test", "--watch"],
+      "skipFiles": ["<node_internals>/**"],
       "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Attach Debugger",
+      "request": "attach",
+      "type": "node",
+      "port": 9229,
+      "autoAttachChildProcesses": true,
+      "skipFiles": ["<node_internals>/**"]
     }
   ],
   "compounds": [

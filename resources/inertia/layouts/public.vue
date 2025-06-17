@@ -17,12 +17,13 @@ defineProps<{
             <div class="flex items-center">
               <Link href="/" class="text-2xl font-bold text-indigo-600"> Mini Blog </Link>
             </div>
-            <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-4 text-sm font-medium">
               <template v-if="auth">
+                <Link href="/posts/create" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md">Create Post</Link>
                 <Link
                   href="/profile"
                   as="button"
-                  class="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium"
+                  class="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md"
                 >
                   {{ auth.fullName }}
                 </Link>
@@ -30,7 +31,7 @@ defineProps<{
                   href="/logout"
                   method="post"
                   as="button"
-                  class="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium"
+                  class="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md"
                 >
                   Logout
                 </Link>
@@ -38,13 +39,13 @@ defineProps<{
               <template v-else>
                 <Link
                   href="/login"
-                  class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium"
+                  class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md"
                 >
                   Login
                 </Link>
                 <Link
                   href="/register"
-                  class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+                  class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md"
                 >
                   Sign Up
                 </Link>

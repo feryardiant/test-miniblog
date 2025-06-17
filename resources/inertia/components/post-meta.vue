@@ -21,6 +21,7 @@ function toLocalDate(date: string): string {
         author.fullName
       }}</Link></span
     >
+
     <time v-if="date" :datetime="date"> at {{ toLocalDate(date) }}</time>
   </p>
 </template>

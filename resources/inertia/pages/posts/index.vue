@@ -26,7 +26,7 @@ defineProps<{
           <PostHeader
             :title="post.title"
             :slug="post.slug"
-            :author="auth"
+            :author="post.author"
             :date="String(post.publishedAt)"
           />
         </div>

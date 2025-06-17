@@ -29,10 +29,12 @@ export default class PostsController {
 
     await Post.create({
       ...data,
+      slug: data.title.toLowerCase().replace(/\s+/g, '-'),
       userId: auth.user!.id,
     })
 
     session.flash('success', 'Post created successfully!')
+
     return response.redirect().toRoute('posts.index')
   }
 
@@ -71,11 +73,14 @@ export default class PostsController {
     }
 
     const data = await request.validateUsing(updatePostValidator)
+
     post.merge(data)
-    await post.save()
+
+    const updated = await post.save()
 
     session.flash('success', 'Post updated successfully!')
-    return response.redirect().toRoute('posts.show', { id: post.id })
+
+    return response.redirect().toRoute('posts.show', { slug: updated.slug })
   }
 
   /**
@@ -92,6 +97,7 @@ export default class PostsController {
     await post.delete()
 
     session.flash('success', 'Post deleted successfully!')
+
     return response.redirect().toRoute('posts.index')
   }
 }

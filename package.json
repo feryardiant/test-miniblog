@@ -39,6 +39,7 @@
     "@adonisjs/prettier-config": "^1.4.5",
     "@adonisjs/tsconfig": "^1.4.1",
     "@fontsource-variable/inter": "^5.2.6",
+    "@inertiajs/core": "^2.0.12",
     "@japa/api-client": "^3.1.0",
     "@japa/assert": "^4.0.1",
     "@japa/browser-client": "^2.1.1",

@@ -6,6 +6,12 @@ import adonisjs from '@adonisjs/vite/client'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
+  optimizeDeps: {
+    esbuildOptions: {
+      target: 'esnext',
+    },
+  },
+
   plugins: [
     inertia({ ssr: { enabled: false } }),
     vue(),

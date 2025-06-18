@@ -20,35 +20,14 @@ defineProps<{
             <div class="flex items-center space-x-4 text-sm font-medium">
               <template v-if="auth">
                 <Link href="/posts/create" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md">Create Post</Link>
-                <Link
-                  href="/profile"
-                  as="button"
-                  class="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md"
-                >
-                  {{ auth.fullName }}
-                </Link>
-                <Link
-                  href="/logout"
-                  method="post"
-                  as="button"
-                  class="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md"
-                >
-                  Logout
-                </Link>
+                <Link href="/profile" class="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md">{{ auth.fullName }}</Link>
+                <Link href="/users" class="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md">All Users</Link>
+                <Link href="/logout" method="post" class="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md">Logout</Link>
               </template>
+
               <template v-else>
-                <Link
-                  href="/login"
-                  class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md"
-                >
-                  Login
-                </Link>
-                <Link
-                  href="/register"
-                  class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md"
-                >
-                  Sign Up
-                </Link>
+                <Link href="/login" class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md">Login</Link>
+                <Link href="/register" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md">Sign Up</Link>
               </template>
             </div>
           </div>
